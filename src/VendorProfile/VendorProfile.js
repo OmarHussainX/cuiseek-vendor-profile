@@ -10,8 +10,39 @@ class VendorProfile extends React.Component {
     date: null,
   }
 
+/*
+  COMMENTING THIS OUT UNTIL I FIGURE OUT HOW TO PRPERLY (asynchronously) LOAD THE MAP!!!
 
-  handleChange = date => {
+  componentDidMount() {
+    // let latitude = parseFloat(this.props.location.state.selectedSpace.lat)
+    // let longitude = parseFloat(this.props.location.state.selectedSpace.long)
+
+    //hardcoding coordinates for Calgary Place for now (Suite 1800, 330 5 Ave.)
+    let latitude = 51.0478868
+    let longitude = -114.0682998
+
+    if (isNaN(latitude) || isNaN(longitude)) {
+      latitude = 37.4220041
+      longitude = -122.0862462
+    }
+
+    let map = new window.google.maps.Map(document.getElementById('map'), {
+      center: { lat: latitude, lng: longitude },
+      zoom: 18,
+    })
+
+    let marker = new window.google.maps.Marker({
+      position: { lat: latitude, lng: longitude },
+      map: map,
+      animation: window.google.maps.Animation.DROP,
+      title: 'Placeholder Title',
+    })
+
+    marker.setMap(map) //is this needed? Seems OK even without it... :/
+  }
+ */
+
+ handleChange = date => {
     message.info(`Selected Date: ${date ? date.format('YYYY-MM-DD') : 'None'}`)
     this.setState({ date })
   }
@@ -52,7 +83,7 @@ class VendorProfile extends React.Component {
             </Button>
           </Col>
         </Row>
-        {/* --------------------------------------------------------------------- */}
+        {/* ------------------------------------------------------------------ */}
         <Tabs style={{ marginTop: 32 }}>
           <TabPane tab="Overview" key="1">
             <div>
@@ -64,27 +95,39 @@ class VendorProfile extends React.Component {
                   <Descriptions.Item label={company.phone}>Phone</Descriptions.Item>
                 </Descriptions>
               </Card>
-              <Card bordered={true} style={{ marginTop: 20}}>
-                <Title level={4}>Contact information</Title>
-                <Descriptions layout="vertical" size="small" colon={false}>
-                  <Descriptions.Item label={`${contact.firstName} ${contact.lastName}`}>{ownerStatus}</Descriptions.Item>
-                  <Descriptions.Item label={contact.jobTitle}>Title</Descriptions.Item>
-                  <Descriptions.Item label={contact.email}>E-mail</Descriptions.Item>
-                  <Descriptions.Item label={contact.phone}>Phone</Descriptions.Item>
-                </Descriptions>
-              </Card>
-              <Card bordered={true} style={{ marginTop: 20}}>
-                <Title level={4}>Address</Title>
-                <Descriptions layout="vertical" size="small" colon={false}>
-                  <Descriptions.Item label={`${address.streetSecondaryAddress}, ${address.streetAddress}`}>Address</Descriptions.Item>
-                  <Descriptions.Item label={address.city}>City</Descriptions.Item>
-                  <Descriptions.Item label={address.state}>State</Descriptions.Item>
-                  <Descriptions.Item label={address.zipCode}>Postal code</Descriptions.Item>
-                  <Descriptions.Item label={address.country}>Country</Descriptions.Item>
-                </Descriptions>
-              </Card>
+              <Row gutter={16}>
+                <Col span={16}>
+                  <Card bordered={true} style={{ marginTop: 20 }}>
+                    <Title level={4}>Contact information</Title>
+                    <Descriptions layout="vertical" size="small" colon={false}>
+                      <Descriptions.Item label={`${contact.firstName} ${contact.lastName}`}>{ownerStatus}</Descriptions.Item>
+                      <Descriptions.Item label={contact.jobTitle}>Title</Descriptions.Item>
+                      <Descriptions.Item label={contact.email}>E-mail</Descriptions.Item>
+                      <Descriptions.Item label={contact.phone}>Phone</Descriptions.Item>
+                    </Descriptions>
+                  </Card>
+                  <Card bordered={true} style={{ marginTop: 20 }}>
+                    <Title level={4}>Address</Title>
+                    <Descriptions layout="vertical" size="small" colon={false}>
+                      <Descriptions.Item label={`${address.streetSecondaryAddress}, ${address.streetAddress}`}>Address</Descriptions.Item>
+                      <Descriptions.Item label={address.city}>City</Descriptions.Item>
+                      <Descriptions.Item label={address.state}>State</Descriptions.Item>
+                      <Descriptions.Item label={address.zipCode}>Postal code</Descriptions.Item>
+                      <Descriptions.Item label={address.country}>Country</Descriptions.Item>
+                    </Descriptions>
+                  </Card>
+                </Col>
+                <Col span={8}>
+                  <Card bordered={true} style={{ marginTop: 20 }}>
+                    <Title level={4}>Map</Title>
+                    <p>Google map goes here!</p>
+                    <div id="map" />
+                  </Card>
+                </Col>
+              </Row>
             </div>
           </TabPane>
+          {/* ------------------------------------------------------------------ */}
           <TabPane tab="Security" key="2">
             <div style={{ background: '#ECECEC', padding: '30px' }}>
               <Card title="Card one" bordered={false} style={{ width: 300 }}>
@@ -97,24 +140,11 @@ class VendorProfile extends React.Component {
               </Card>
             </div>
           </TabPane>
+          {/* ------------------------------------------------------------------ */}
           <TabPane tab="Membership" key="3">
             Content of Membership tab
           </TabPane>
         </Tabs>
-        {/* --------------------------------------------------------------------- */}
-        {/* <div>
-          <Row gutter={16}>
-            <Col span={8}>col-8</Col>
-            <Col span={8}>col-8</Col>
-            <Col span={8}>col-8</Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={6}>col-6</Col>
-            <Col span={6}>col-6</Col>
-            <Col span={6}>col-6</Col>
-            <Col span={6}>col-6</Col>
-          </Row>
-        </div> */}
       </div>
     )
   }
