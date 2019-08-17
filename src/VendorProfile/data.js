@@ -11,10 +11,17 @@ export const company = {
    websiteUrl: faker.internet.url(),
    phone: faker.phone.phoneNumber(),
 }
+
+export const bookings = {
+  count: faker.random.number(),
+  timeSaved: faker.random.number(),
+}
+
 export const membership = {
    id: faker.random.uuid(),
    isMember: faker.random.boolean(),
 }
+
 export const address = {
    id: faker.random.uuid(),
    streetAddress: faker.address.streetAddress(),
@@ -24,6 +31,7 @@ export const address = {
    zipCode: faker.address.zipCode(),
    state: faker.address.state(),
 }
+
 export const contact = {
    id: faker.random.uuid(),
    firstName: faker.name.firstName(),

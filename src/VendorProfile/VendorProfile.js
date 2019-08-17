@@ -2,8 +2,7 @@ import React from 'react'
 import { BackTop, Button, Card, Tabs, message, Row, Col, Avatar, Typography, Descriptions } from 'antd'
 import 'antd/dist/antd.css'
 import './VendorProfile.css'
-import Surveys from './Surveys'
-import { company } from './data'  //using faker to generate vendor data!
+import { company, bookings } from './data'  //using faker to generate vendor data!
 
 
 class VendorProfile extends React.Component {
@@ -36,12 +35,9 @@ class VendorProfile extends React.Component {
           </Col>
           <Col span={12}>
             <Title level={4}>{company.name}</Title>
-            <p>{company.email.toLowerCase()}</p>
-            {/* {company.phone}<br /> */}
-            {/* <a href={company.websiteUrl}>{company.websiteUrl}</a> */}
             <Descriptions layout="vertical" size="small" colon={false}>
-              <Descriptions.Item label="No. of bookings">234</Descriptions.Item>
-              <Descriptions.Item label="Time saved">181 min.</Descriptions.Item>
+            <Descriptions.Item label={bookings.count}>No. of bookings</Descriptions.Item>
+              <Descriptions.Item label={bookings.count + ' min.'}>Time saved</Descriptions.Item>
             </Descriptions>
           </Col>
           <Col span={6}>
@@ -56,25 +52,40 @@ class VendorProfile extends React.Component {
         </Row>
         <Tabs>
           <TabPane tab="Overview" key="1">
-            Content of Overview tab
+            {/* <div style={{ background: '#ECECEC', padding: '30px' }}> */}
+            <div>
+              <Card bordered={true} style={{ }}>
+              <Title level={4}>General information</Title>
+            {/* {company.phone}<br /> */}
+            {/* <a href={company.websiteUrl}>{company.websiteUrl}</a> */}
+            <Descriptions layout="vertical" size="small" colon={false}>
+              <Descriptions.Item label={company.email.toLowerCase()}>E-mail</Descriptions.Item>
+              <Descriptions.Item label={company.websiteUrl}>Website</Descriptions.Item>
+              <Descriptions.Item label={company.phone}>Phone</Descriptions.Item>
+            </Descriptions>
+              </Card>
+              <Card title="Card two" bordered={true} style={{ width: 300, marginTop: 20 }}>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
+            </div>
           </TabPane>
           <TabPane tab="Security" key="2">
-            Content of Security tab
+            <div style={{ background: '#ECECEC', padding: '30px' }}>
+              <Card title="Card one" bordered={false} style={{ width: 300 }}>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
+              <Card title="Card two" bordered={false} style={{ width: 300 }}>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
+            </div>
           </TabPane>
           <TabPane tab="Membership" key="3">
             Content of Membership tab
           </TabPane>
         </Tabs>
-        <div style={{ background: '#ECECEC', padding: '30px' }}>
-          <Card title="Card one" bordered={false} style={{ width: 300 }}>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-          <Card title="Card two" bordered={false} style={{ width: 300 }}>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
-        </div>
         <div>
           <Row gutter={16}>
             <Col span={8}>col-8</Col>
@@ -88,7 +99,6 @@ class VendorProfile extends React.Component {
             <Col span={6}>col-6</Col>
           </Row>
         </div>
-        <Surveys />
       </div>
     )
   }
