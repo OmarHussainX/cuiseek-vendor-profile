@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Card, DatePicker, Tabs, message } from 'antd'
+import { BackTop, Button, Card, DatePicker, Tabs, message } from 'antd'
 import 'antd/dist/antd.css'
 
+// BackTop not working... why?
 
 class App extends React.Component {
   state = {
@@ -21,10 +22,11 @@ class App extends React.Component {
   render() {
     const { date } = this.state
     const { TabPane } = Tabs
-    const operations = <Button type="primary" onClick={this.editProfile}>Edit Profile</Button>
+    const operations = <Button icon="edit" type="primary" onClick={this.editProfile}>Edit Profile</Button>
 
     return (
       <div style={{ width: '80%', margin: '100px auto' }}>
+        <BackTop />
         <DatePicker onChange={this.handleChange} />
         <div style={{ marginTop: 20 }}>
           Selected Date: {date ? date.format('YYYY-MM-DD') : 'None'}
