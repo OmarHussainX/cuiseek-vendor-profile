@@ -2,8 +2,9 @@
 * mockup vendor profile page
 * orders this month
 * google maps
-* vendor profile pic
+* vendor profile pic (will come from URL)
 * membership tab/new page (for vendor to vire Cuiseek account info)
+* hardcode any needed data into a JSON file, and import it 
 
 
 
