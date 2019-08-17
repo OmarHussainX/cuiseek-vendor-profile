@@ -8,7 +8,7 @@ export const company = {
    ownerId: faker.random.uuid(),
    profileImageUrl: faker.image.food(),
    email: faker.internet.email(),
-   webisteUrl: faker.internet.url(),
+   websiteUrl: faker.internet.url(),
    phone: faker.phone.phoneNumber(),
 }
 export const membership = {

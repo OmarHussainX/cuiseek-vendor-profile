@@ -1,16 +1,16 @@
 import React from 'react'
-import { BackTop, Button, Card, DatePicker, Tabs, message } from 'antd'
+import { BackTop, Button, Card, Tabs, message, Row, Col, Avatar } from 'antd'
 import 'antd/dist/antd.css'
 import Surveys from './Surveys'
+import {company} from './data'  //using faker to generate vendor data!
 
-// BackTop not working... why?
 
 class VendorProfile extends React.Component {
   state = {
     date: null,
   }
-  
-  
+
+
   handleChange = date => {
     message.info(`Selected Date: ${date ? date.format('YYYY-MM-DD') : 'None'}`)
     this.setState({ date })
@@ -21,18 +21,20 @@ class VendorProfile extends React.Component {
   }
 
   render() {
-    const { date } = this.state
     const { TabPane } = Tabs
-    const operations = <Button icon="edit" type="primary" onClick={this.editProfile}>Edit Profile</Button>
+
+    console.log('company from data.js/faker', company)
 
     return (
       <div>
         <BackTop />
-        {/* <DatePicker onChange={this.handleChange} />
-        <div style={{ marginTop: 20 }}>
-          Selected Date: {date ? date.format('YYYY-MM-DD') : 'None'}
-        </div> */}
-        <Tabs tabBarExtraContent={operations}>
+          <Row gutter={16} style={{ marginBottom: 20 }}>
+            <Col span={18}>
+            <Avatar size={128} src={company.profileImageUrl} />
+            </Col>
+            <Col span={6}><Button icon="edit" type="primary" onClick={this.editProfile}>Edit Profile</Button></Col>
+          </Row>
+        <Tabs>
           <TabPane tab="Membership" key="1">
             Content of Membership tab
           </TabPane>
@@ -52,6 +54,19 @@ class VendorProfile extends React.Component {
             <p>Card content</p>
             <p>Card content</p>
           </Card>
+        </div>
+        <div>
+          <Row gutter={16}>
+            <Col span={8}>col-8</Col>
+            <Col span={8}>col-8</Col>
+            <Col span={8}>col-8</Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={6}>col-6</Col>
+            <Col span={6}>col-6</Col>
+            <Col span={6}>col-6</Col>
+            <Col span={6}>col-6</Col>
+          </Row>
         </div>
         <Surveys />
       </div>
