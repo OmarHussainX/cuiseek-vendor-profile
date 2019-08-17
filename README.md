@@ -1,9 +1,9 @@
 # NOTES (2019-08-17)
-. mockup vendor profile page
-. orders this month
-. google maps
-. vendor profile pic
-. membership tab/new page (for vendor to vire Cuiseek account info)
+* mockup vendor profile page
+* orders this month
+* google maps
+* vendor profile pic
+* membership tab/new page (for vendor to vire Cuiseek account info)
 
 
 
