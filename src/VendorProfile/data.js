@@ -2,7 +2,7 @@ import * as faker from "faker"
 
 export const company = {
    id: faker.random.uuid(),
-   companyName: faker.company.companyName(),
+   name: faker.company.companyName(),
    addressId: faker.random.uuid(),
    membershipId: faker.random.uuid(),
    ownerId: faker.random.uuid(),
