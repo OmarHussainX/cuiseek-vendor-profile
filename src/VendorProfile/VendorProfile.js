@@ -38,8 +38,8 @@ class VendorProfile extends React.Component {
           <Col span={12}>
             <Title level={4}>{company.name}</Title>
             <Descriptions layout="vertical" size="small" colon={false}>
-              <Descriptions.Item label={bookings.count}>No. of bookings</Descriptions.Item>
-              <Descriptions.Item label={bookings.count + ' min.'}>Time saved</Descriptions.Item>
+              <Descriptions.Item label={bookings.count.toLocaleString()}>No. of bookings</Descriptions.Item>
+              <Descriptions.Item label={bookings.timeSaved.toLocaleString() + ' hours'}>Time saved</Descriptions.Item>
             </Descriptions>
           </Col>
           <Col span={6}>

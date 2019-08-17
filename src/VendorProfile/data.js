@@ -14,7 +14,7 @@ export const company = {
 
 export const bookings = {
   count: faker.random.number(),
-  timeSaved: faker.random.number(),
+  timeSaved: faker.random.number({'min': 1000, 'max': 5000}),
 }
 
 export const membership = {
