@@ -30,8 +30,8 @@ export const address = {
    city: faker.address.city(),
    zipCode: faker.address.zipCode(),
    state: faker.address.state(),
-   lat: faker.address.latitude(),   // The latitude and longitude values generated
-   lng: faker.address.longitude(),  // are not useful: they aren't real/valid
+   lat: faker.address.latitude(),   // latitude & longitude values generated are
+   lng: faker.address.longitude(),  // valid, but do not correspond to the address
 }
 
 export const contact = {
