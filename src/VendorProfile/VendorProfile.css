@@ -1,3 +1,7 @@
 .ant-descriptions-item-label {
   font-weight: bold;
 }
+
+#map-canvas-container {position: relative;}
+
+#map-canvas {height: 100%; }

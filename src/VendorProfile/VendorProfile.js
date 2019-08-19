@@ -10,8 +10,7 @@ class VendorProfile extends React.Component {
     date: null,
   }
 
-/*
-  COMMENTING THIS OUT UNTIL I FIGURE OUT HOW TO PRPERLY (asynchronously) LOAD THE MAP!!!
+  // COMMENTING THIS OUT UNTIL I FIGURE OUT HOW TO PROPERLY (asynchronously) LOAD THE MAP!!!
 
   componentDidMount() {
     // let latitude = parseFloat(this.props.location.state.selectedSpace.lat)
@@ -26,7 +25,7 @@ class VendorProfile extends React.Component {
       longitude = -122.0862462
     }
 
-    let map = new window.google.maps.Map(document.getElementById('map'), {
+    let map = new window.google.maps.Map(document.getElementById('map-canvas'), {
       center: { lat: latitude, lng: longitude },
       zoom: 18,
     })
@@ -40,7 +39,6 @@ class VendorProfile extends React.Component {
 
     marker.setMap(map) //is this needed? Seems OK even without it... :/
   }
- */
 
  handleChange = date => {
     message.info(`Selected Date: ${date ? date.format('YYYY-MM-DD') : 'None'}`)
@@ -55,8 +53,6 @@ class VendorProfile extends React.Component {
     const { TabPane } = Tabs
     const { Title } = Typography
     const ownerStatus = contact.isOwner ? <em>Business owner</em> : 'Name'
-
-    console.log('company from data.js/faker', company)
 
     return (
       <div>
@@ -119,9 +115,10 @@ class VendorProfile extends React.Component {
                 </Col>
                 <Col span={8}>
                   <Card bordered={true} style={{ marginTop: 20 }}>
-                    <Title level={4}>Map</Title>
-                    <p>Google map goes here!</p>
-                    <div id="map" />
+                    {/* <Title level={4}>Map</Title> */}
+                    <div id="map-canvas-container">
+                      <div style={{ height: 250 }} id="map-canvas" />
+                    </div>
                   </Card>
                 </Col>
               </Row>
