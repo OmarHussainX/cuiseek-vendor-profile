@@ -3,56 +3,36 @@ import { BackTop, Button, Card, Tabs, message, Row, Col, Avatar, Typography, Des
 import 'antd/dist/antd.css'
 import './VendorProfile.css'
 import { company, bookings, contact, address } from './data'  //using faker to generate vendor data!
-
+import Map from './Map'
 
 class VendorProfile extends React.Component {
   state = {
     date: null,
   }
 
-  // COMMENTING THIS OUT UNTIL I FIGURE OUT HOW TO PROPERLY (asynchronously) LOAD THE MAP!!!
-
-  componentDidMount() {
-    // let latitude = parseFloat(this.props.location.state.selectedSpace.lat)
-    // let longitude = parseFloat(this.props.location.state.selectedSpace.long)
-
-    //hardcoding coordinates for Calgary Place for now (Suite 1800, 330 5 Ave.)
-    let latitude = 51.0478868
-    let longitude = -114.0682998
-
-    if (isNaN(latitude) || isNaN(longitude)) {
-      latitude = 37.4220041
-      longitude = -122.0862462
-    }
-
-    let map = new window.google.maps.Map(document.getElementById('map-canvas'), {
-      center: { lat: latitude, lng: longitude },
-      zoom: 18,
-    })
-
-    let marker = new window.google.maps.Marker({
-      position: { lat: latitude, lng: longitude },
-      map: map,
-      animation: window.google.maps.Animation.DROP,
-      title: 'Placeholder Title',
-    })
-
-    marker.setMap(map) //is this needed? Seems OK even without it... :/
-  }
-
- handleChange = date => {
+  handleChange = date => {
     message.info(`Selected Date: ${date ? date.format('YYYY-MM-DD') : 'None'}`)
     this.setState({ date })
   }
 
   editProfile = () => {
-    message.info('Add modal to edit account');
+    message.info('Add modal to edit account')
   }
 
   render() {
     const { TabPane } = Tabs
     const { Title } = Typography
     const ownerStatus = contact.isOwner ? <em>Business owner</em> : 'Name'
+
+    // const [latitude, longitude] = [51.045334, -114.0549243]
+
+    const latitude = parseFloat(address.lat)
+    const longitude = parseFloat(address.lng)
+
+    // if (isNaN(latitude) || isNaN(longitude)) {
+    //   latitude = 51.045334
+    //   longitude = -114.0549243
+    // }
 
     return (
       <div>
@@ -93,7 +73,7 @@ class VendorProfile extends React.Component {
               </Card>
               <Row gutter={16}>
                 <Col span={16}>
-                  <Card bordered={true} style={{ marginTop: 20 }}>
+                  <Card bordered={true} style={{ marginTop: 20 }} id="contact-card">
                     <Title level={4}>Contact information</Title>
                     <Descriptions layout="vertical" size="small" colon={false}>
                       <Descriptions.Item label={`${contact.firstName} ${contact.lastName}`}>{ownerStatus}</Descriptions.Item>
@@ -102,7 +82,7 @@ class VendorProfile extends React.Component {
                       <Descriptions.Item label={contact.phone}>Phone</Descriptions.Item>
                     </Descriptions>
                   </Card>
-                  <Card bordered={true} style={{ marginTop: 20 }}>
+                  <Card bordered={true} style={{ marginTop: 20 }} id="address-card">
                     <Title level={4}>Address</Title>
                     <Descriptions layout="vertical" size="small" colon={false}>
                       <Descriptions.Item label={`${address.streetSecondaryAddress}, ${address.streetAddress}`}>Address</Descriptions.Item>
@@ -115,10 +95,23 @@ class VendorProfile extends React.Component {
                 </Col>
                 <Col span={8}>
                   <Card bordered={true} style={{ marginTop: 20 }}>
-                    {/* <Title level={4}>Map</Title> */}
-                    <div id="map-canvas-container">
-                      <div style={{ height: 250 }} id="map-canvas" />
-                    </div>
+                    <Map
+                      id="myMap"
+                      options={{
+                        center: { lat: latitude, lng: longitude },
+                        // https://developers.google.com/maps/documentation/javascript/tutorial#zoom-levels
+                        zoom: 1,
+                        disableDefaultUI: true,
+                      }}
+                      onMapLoad={map => {
+                        let marker = new window.google.maps.Marker({
+                          position: { lat: latitude, lng: longitude },
+                          map: map,
+                          animation: window.google.maps.Animation.DROP,
+                          title: company.name
+                        })
+                      }}
+                    />
                   </Card>
                 </Col>
               </Row>

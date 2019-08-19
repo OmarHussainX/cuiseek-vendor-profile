@@ -1,7 +1,7 @@
 .ant-descriptions-item-label {
   font-weight: bold;
 }
-
+/* 
 #map-canvas-container {position: relative;}
 
-#map-canvas {height: 100%; }
+#map-canvas {position: absolute; top: 0; right: 0; bottom: 0; left: 0; } */
